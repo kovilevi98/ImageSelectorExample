@@ -23,10 +23,9 @@ jobs:
       - run: flutter --version
       - run: flutter pub get
       - run: flutter build apk --release
-      - run: flutter build appbundle
-      - name: Create Release
-        id: create_release
-        uses: ncipollo/release-action@v2
+      - uses: actions/upload-artifact@v1
         with:
-         artifacts: "build/app/outputs/flutter-apk/*.apk"
-         token: ${{ secrets.GITHUB_TOKEN }}
+              # Name of the command/step.
+          name: release-apk
+                # Path to the release apk.
+          path: build/app/outputs/apk/release/app-release.apk
